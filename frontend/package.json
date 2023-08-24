@@ -1,12 +1,8 @@
 {
-  "name": "frontend",
+   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
-  "proxy":"http://django-service:8000",
-=======
-  "proxy":"http://python-service:8000",
->>>>>>> 78707541bfea34826a43e5376461c476ef6b4443
+  "proxy": "http://django-service:8000",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
