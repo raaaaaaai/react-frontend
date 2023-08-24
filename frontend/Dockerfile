@@ -13,7 +13,6 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
 COPY package.json /app/
-COPY package-lock.json /app/
 
 COPY . .
 # Install app dependencies
