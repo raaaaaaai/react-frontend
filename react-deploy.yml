@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: react-app
-          image: aksregistery01.azure.io/raaaaaaai/react-django:react-image
+          image: ReactRegistry01.azure.io/raaaaaaai/react-frontend/$(Build.BuildId)
           ports:
             - containerPort: 3000
 
