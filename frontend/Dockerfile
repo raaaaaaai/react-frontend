@@ -15,12 +15,13 @@ WORKDIR /app
 COPY package.json /app/
 COPY package-lock.json /app/
 
+COPY . .
 # Install app dependencies
 RUN npm install
 RUN npm install styled-components
 
 # Copy the entire app to the container
-COPY . .
+
 
 # Build the React app for production
 RUN npm run build
