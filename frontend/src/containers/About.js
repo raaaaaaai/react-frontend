@@ -16,7 +16,7 @@ const About = () => {
 		const getTopSeller = async () => {
 			try {
 				const res = await axios.get(
-					`${process.env.REACT_APP_API_URL}/api/realtors/topseller/`,
+					`/api/realtors/topseller/`,
 					config
 				);
 				setTopSeller(res.data);
@@ -38,7 +38,7 @@ const About = () => {
 		const getRealtors = async () => {
 			try {
 				const res = await axios.get(
-					`${process.env.REACT_APP_API_URL}/api/realtors/`,
+					`/api/realtors/`,
 					config
 				);
 				setRealtors(res.data);
