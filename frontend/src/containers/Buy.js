@@ -28,7 +28,7 @@ const Buy = ({ match, isAuthenticated, email }) => {
 
         axios
             .get(
-                `${process.env.REACT_APP_API_URL}/api/listings/${slug}`,
+                `/api/listings/${slug}`,
                 config
             )
             .then((res) => {
@@ -62,7 +62,7 @@ const Buy = ({ match, isAuthenticated, email }) => {
             console.log(buyer, realtor, cart_slug, title, total_price);
             axios
                 .post(
-                    `${process.env.REACT_APP_API_URL}/api/orders/place_order/`,
+                    `/api/orders/place_order/`,
                     { buyer, realtor, cart_slug, title, total_price },
                     config
                 )
