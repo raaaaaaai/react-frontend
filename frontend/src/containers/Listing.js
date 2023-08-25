@@ -29,7 +29,7 @@ const Listing = () => {
 
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_URL}/api/listings/`)
+            .get(`/api/listings/`)
             .then((res) => {
                 setListings(res.data.results);
                 window.scrollTo(0, 0);
