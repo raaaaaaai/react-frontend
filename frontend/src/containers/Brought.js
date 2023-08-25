@@ -20,7 +20,7 @@ const Brought = ({ match, isAuthenticated, email }) => {
 
         axios
             .get(
-                `${process.env.REACT_APP_API_URL}/api/listings/${slug}`,
+                `/api/listings/${slug}`,
                 config
             )
             .then((res) => {
@@ -43,7 +43,7 @@ const Brought = ({ match, isAuthenticated, email }) => {
         if (id) {
             axios
                 .get(
-                    `${process.env.REACT_APP_API_URL}/api/realtors/${id}/`,
+                    `/api/realtors/${id}/`,
                     config
                 )
                 .then((res) => {
@@ -65,7 +65,7 @@ const Brought = ({ match, isAuthenticated, email }) => {
         };
         if (isAuthenticated) {
             axios
-                .get(`${process.env.REACT_APP_API_URL}/api/orders/`, config)
+                .get(`/api/orders/`, config)
                 .then((res) => {
                     const x = res.data.results.filter((val) => {
                         return val.buyer == value;
