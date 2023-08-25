@@ -18,7 +18,7 @@ const Profile = ({ isAuthenticated, email }) => {
         if (isAuthenticated) {
             axios
                 .get(
-                    `${process.env.REACT_APP_API_URL}/api/accounts/${value}/`,
+                    `/api/accounts/${value}/`,
                     config
                 )
                 .then((res) => {
@@ -40,7 +40,7 @@ const Profile = ({ isAuthenticated, email }) => {
         };
         if (isAuthenticated) {
             axios
-                .get(`${process.env.REACT_APP_API_URL}/api/orders/`, config)
+                .get(`/api/orders/`, config)
                 .then((res) => {
                     const x = res.data.results.filter((val) => {
                         return val.buyer === value;
