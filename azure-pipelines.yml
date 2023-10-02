@@ -16,7 +16,7 @@ variables:
   containerRegistry: 'pipelineregistry02.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/frontend/Dockerfile'
   tag: '$(Build.BuildId)'
-  acrsecret: pipeline_secret
+  acrsecret: pipelinesecret
 
 
 stages:
