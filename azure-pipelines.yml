@@ -69,8 +69,8 @@ stages:
             connectionType: 'kubernetesServiceConnection'
             namespace: 'default'
             manifests: |
-              $(Pipeline.Workspace)/1/s/react-deploy.yml
-              $(Pipeline.Workspace)/1/s/service-react.yml
+              $(Pipeline.Workspace)/s/react-deploy.yml
+              $(Pipeline.Workspace)/s/service-react.yml
             containers: '$(containerRegistry)/$(imageRepository):$(tag)'
         
 
