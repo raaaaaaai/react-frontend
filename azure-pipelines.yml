@@ -7,6 +7,7 @@ trigger:
 
 resources:
 - repo: self
+pool: selh-agent
 
 variables:
   # Container registry service connection established during pipeline creation
@@ -16,8 +17,6 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/frontend/Dockerfile'
   tag: '$(Build.BuildId)'
 
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
