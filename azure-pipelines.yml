@@ -16,6 +16,7 @@ variables:
   containerRegistry: 'pipelineregistry02.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/frontend/Dockerfile'
   tag: '$(Build.BuildId)'
+  acrsecret: pipeline_secret
 
 
 stages:
@@ -34,3 +35,39 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: PublishPipelineArtifact@1
+      inputs:
+      targetPath: '$(Pipeline.Workspace)/s/kubernetes'
+      artifact: 'manifests'
+      publishLocation: 'pipeline'
+- stage: Deploy
+  dependsOn: Build
+  displayName: Deploy to Kubernetes
+  jobs:
+  - job: Deploy
+    displayName: Deploy to AKS
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'manifests'
+        targetPath: '$(Pipeline.Workspace)/manifests'
+    - task: KubernetesManifest@1
+      inputs:
+        action: 'createSecret'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'kubernetes_cluster_con'
+        namespace: 'default'
+        secretType: 'dockerRegistry'
+        secretName: '$(acrsecret)'
+        dockerRegistryEndpoint: 'pipelineregistry02-4579'
+    - task: KubernetesManifest@1
+      inputs:
+        action: 'deploy'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'kubernetes_cluster_con'
+        namespace: 'default'
+        manifests: |
+          $(Pipeline.Workspace)/manifests/react-deploy.yml
+          $(Pipeline.Workspace)/manifests/service-react.yml
+
