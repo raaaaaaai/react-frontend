@@ -37,7 +37,7 @@ stages:
           $(tag)
     - task: PublishPipelineArtifact@1
       inputs:
-       targetPath: '$(Pipeline.Workspace)/s/kubernetes'
+       targetPath: '$(Pipeline.Workspace)'
        artifact: 'manifests'
        publishLocation: 'pipeline'
 - stage: Deploy
@@ -55,7 +55,7 @@ stages:
           inputs:
             buildType: 'current'
             artifactName: 'manifests'
-            targetPath: '$(Pipeline.Workspace)/manifests'
+            targetPath: '$(Pipeline.Workspace)'
         - task: KubernetesManifest@1
           inputs:
             action: 'createSecret'
@@ -69,8 +69,8 @@ stages:
             connectionType: 'kubernetesServiceConnection'
             namespace: 'default'
             manifests: |
-              $(Pipeline.Workspace)/manifests/react-deploy.yml
-              $(Pipeline.Workspace)/manifests/service-react.yml
+              $(Pipeline.Workspace)/react-deploy.yml
+              $(Pipeline.Workspace)/service-react.yml
             containers: '$(containerRegistry)/$(imageRepository):$(tag)'
         
 
